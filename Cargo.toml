@@ -1,5 +1,5 @@
 [package]
-name = "macros"
+name = "v_byte_macros"
 version = "0.0.0"
 authors = ["DJMrTV <tvnebel@gmail.com>"]
 description = "A `cargo generate` template for quick-starting a procedural macro crate"
