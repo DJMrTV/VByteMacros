@@ -104,10 +104,10 @@ pub fn enum_try_into(input: TokenStream) -> TokenStream {
 
 
     quote!{
-        impl TryFrom<u32> for #impl_on_name{
+        impl ::core::convert::TryFrom<u32> for #impl_on_name{
             type Error = ();
 
-            fn try_from(value: u32) -> Result<Self, Self::Error> {
+            fn try_from(value: u32) -> ::core::result::Result<Self, Self::Error> {
                 match(value){
                     #match_content => Ok(unsafe{ std::mem::transmute(value) }),
                     _ => Err(())
