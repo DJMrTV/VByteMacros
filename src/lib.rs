@@ -72,6 +72,8 @@ fn get_descriminant<'a>(iter: &mut impl Iterator<Item = &'a Variant>) -> Option<
 pub fn enum_try_into(input: TokenStream) -> TokenStream {
     let mut ast = parse_macro_input!(input as DeriveInput);
 
+    let impl_on_name = ast.ident;
+
     let Data::Enum(enum_data) = ast.data else {
         panic!("must be used on an enum");
     };
@@ -102,7 +104,7 @@ pub fn enum_try_into(input: TokenStream) -> TokenStream {
 
 
     quote!{
-        impl TryFrom<u32> for MCPAppType{
+        impl TryFrom<u32> for #impl_on_name{
             type Error = ();
 
             fn try_from(value: u32) -> Result<Self, Self::Error> {
